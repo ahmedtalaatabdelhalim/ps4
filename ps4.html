@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نظام إدارة الأجهزة</title>
+
+  <script>
+    const userName = localStorage.getItem('shiftEmployee');
+    const userType = localStorage.getItem('userType');
+    const shiftDate = localStorage.getItem('shiftManagerDate');
+
+    const now = new Date();
+    let today = new Date(now);
+    if (now.getHours() < 6) {
+      today.setDate(now.getDate() - 1);
+    }
+    const todayDate = today.toLocaleDateString("ar-EG", {
+      weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric'
+    });
+
+    if (!userName || !userType || shiftDate !== todayDate) {
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+    #shiftManagerName {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #007bff;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="shiftManagerName"></div>
+
+<h1>مرحبًا بك في نظام إدارة الأجهزة 🎮</h1>
+<!-- هنا تضع باقي محتوى إدارة الأجهزة -->
+
+<script>
+  const type = localStorage.getItem('userType');
+  const name = localStorage.getItem('shiftEmployee');
+
+  if (type === "manager") {
+    document.getElementById("shiftManagerName").textContent = `مسؤول الشيفت: ${name}`;
+  } else {
+    document.getElementById("shiftManagerName").textContent = "وضع المشاهدة (ضيف)";
+  }
+</script>
+
+</body>
+</html>
