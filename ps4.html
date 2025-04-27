@@ -59,6 +59,8 @@
     </style>
 </head>
 <body>
+    <div id="shiftManagerName"></div>
+
 <div id="notifications-container" style="position: fixed; bottom: 10px; left: 10px; z-index: 1000;"></div>
 <h1>إدارة أجهزة البلايستيشن</h1>
 <div id="devices" class="container"></div>
@@ -661,6 +663,18 @@ function deleteLogEntry(index) {
 <option value="كوب نعناع,10">كوب نعناع - 10 جنيه</option>
 </select><br /><br /><label>اسم الطلب:</label> <input type="text" id="orderItemName" placeholder="اكتب اسم الطلب" /> <br /><br /><label>السعر:</label> <input type="number" id="orderItemPrice" placeholder="اكتب السعر" /> <br /><br /><label>العدد:</label> <input type="number" id="orderItemQty" placeholder="اكتب العدد" value="1" /> <br /><br /><button onclick="submitOrder()">✅ إضافة</button>
  <button onclick="closeOrderModal()">❌ إلغاء</button></div>
+
+    <script>
+  const type = localStorage.getItem('userType');
+  const name = localStorage.getItem('shiftEmployee');
+
+  if (type === "manager") {
+    document.getElementById("shiftManagerName").textContent = `مسؤول الشيفت: ${name}`;
+  } else {
+    document.getElementById("shiftManagerName").textContent = "وضع المشاهدة (ضيف)";
+  }
+</script>
+
 </body>
   <!-- تكامل Firebase: أضف هذا الكود في نهاية الملف مباشرة قبل </body> -->
 
