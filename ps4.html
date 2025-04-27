@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة أجهزة البلايستيشن</title>
+    <script>
+  const userName = localStorage.getItem('shiftEmployee');
+  const userType = localStorage.getItem('userType');
+  const shiftDate = localStorage.getItem('shiftManagerDate');
+
+  const now = new Date();
+  let today = new Date(now);
+  if (now.getHours() < 6) {
+    today.setDate(now.getDate() - 1);
+  }
+  const todayDate = today.toLocaleDateString("ar-EG", {
+    weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric'
+  });
+
+  if (!userName || !userType || shiftDate !== todayDate) {
+    localStorage.clear();
+    window.location.href = "index.html"; // يرجعه على تسجيل الدخول
+  }
+</script>
+
     <style>
       .notification {
     animation: fadeIn 0.5s ease-in-out;
